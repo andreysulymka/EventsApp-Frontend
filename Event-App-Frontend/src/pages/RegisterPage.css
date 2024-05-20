@@ -1,0 +1,15 @@
+.event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.event-title {
+    margin-bottom: 20px;
+}
+
+.events-rediobutton {
+    display: flex;
+    max-width: 450px;
+    justify-content: space-between;
+}
