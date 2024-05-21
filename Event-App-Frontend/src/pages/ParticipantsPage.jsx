@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './ParticipantPage.css';
 
+import ParticipantSearchForm from '../components/ParticipantSearchForm/ParticipantSearchForm.jsx';
+
 const ParticipantsPage = () => {
     const [participants, setParticipants] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -26,6 +28,25 @@ const ParticipantsPage = () => {
         fetchParticipants();
     }, [eventId]);
 
+    const searchParticipants = async (searchTerm, searchBy) => {
+        setLoading(true);
+        try {
+            const endpoint =
+                searchBy === 'name' ? 'searchByName' : 'searchByEmail';
+            const response = await axios.get(
+                `http://localhost:4444/${eventId}/participants/${endpoint}?${
+                    searchBy === 'name' ? 'fullName' : 'email'
+                }=${searchTerm}`
+            );
+            setParticipants(response.data);
+            setError(null);
+        } catch (error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -37,6 +58,7 @@ const ParticipantsPage = () => {
     return (
         <div className="participants-container">
             <h1>Participants</h1>
+            <ParticipantSearchForm onSearch={searchParticipants} />
             {participants.length > 0 ? (
                 <ul className="participants-grid">
                     {participants.map((participant) => (
