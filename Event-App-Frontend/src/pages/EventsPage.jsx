@@ -15,9 +15,9 @@ function EventsPage() {
         try {
             let url;
             if (sortBy === '') {
-                url = 'http://localhost:4444/';
+                url = 'https://eventsappbackend-e2010285d16e.herokuapp.com/';
             } else {
-                url = `http://localhost:4444/events/sort/${sortBy}`;
+                url = `https://eventsappbackend-e2010285d16e.herokuapp.com/events/sort/${sortBy}`;
             }
             const response = await axios.get(url);
             setEvents(response.data);

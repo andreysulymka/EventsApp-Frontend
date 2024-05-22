@@ -15,7 +15,7 @@ const ParticipantsPage = () => {
         const fetchParticipants = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:4444/${eventId}/participants`
+                    `https://eventsappbackend-e2010285d16e.herokuapp.com/${eventId}/participants`
                 );
                 setParticipants(response.data);
             } catch (error) {
@@ -34,7 +34,7 @@ const ParticipantsPage = () => {
             const endpoint =
                 searchBy === 'name' ? 'searchByName' : 'searchByEmail';
             const response = await axios.get(
-                `http://localhost:4444/${eventId}/participants/${endpoint}?${
+                `https://eventsappbackend-e2010285d16e.herokuapp.com/${eventId}/participants/${endpoint}?${
                     searchBy === 'name' ? 'fullName' : 'email'
                 }=${searchTerm}`
             );

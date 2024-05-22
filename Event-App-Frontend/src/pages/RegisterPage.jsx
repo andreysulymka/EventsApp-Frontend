@@ -20,7 +20,7 @@ function RegisterPage() {
         e.preventDefault();
         try {
             const response = await axios.post(
-                `http://localhost:4444/${eventId}/register`,
+                `https://eventsappbackend-e2010285d16e.herokuapp.com/${eventId}/register`,
                 formData
             );
 
